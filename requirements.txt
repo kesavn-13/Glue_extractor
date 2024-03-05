@@ -3,6 +3,8 @@ opencv_python==4.9.0.80
 opencv_python_headless==4.9.0.80
 pandas==2.2.1
 Pillow==10.2.0
+PyOpenGL==3.1.7
+PyOpenGL==3.1.7
 rembg==2.0.55
 Requests==2.31.0
 streamlit==1.31.1

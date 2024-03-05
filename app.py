@@ -13,7 +13,7 @@ from ultralytics import YOLO
 from rembg import remove
 import cv2
 import numpy
-
+import OpenGL
 
 
 # %%
