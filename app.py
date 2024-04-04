@@ -65,9 +65,9 @@ try:
           results = model(img)
           names = model.model.names
           annotator = Annotator(im0, line_width=2)
-          for result[0].masks is not None:
-              clss = result[0].boxes.cls.cpu().tolist()
-              masks = result[0].masks.xy
+          for results[0].masks is not None:
+              clss = results[0].boxes.cls.cpu().tolist()
+              masks = results[0].masks.xy
               for mask, cls in zip(masks, clss):
                   annotator.seg_bbox(mask=mask,mask_color=colors(int(cls), True),det_label=names[int(cls)])
               rgb_image = cv2.cvtColor(annotator.im, cv2.COLOR_BGR2RGB)
