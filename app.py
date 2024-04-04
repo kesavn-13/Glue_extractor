@@ -57,7 +57,8 @@ def preprocess(img):
 try:
     if image is not None:
        if st.button('Extract'):
-          im0 = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
+          image = Image.open(uploaded_file)
+          im0 = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
           model = YOLO(r"best.pt")
           img = preprocess(im0)
           
