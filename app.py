@@ -59,6 +59,7 @@ try:
        if st.button('Extract'):
           img = preprocess(image)
           model = YOLO(r"best.pt")
+          names = model.model.names
           results = model(img)
           b=model.predict(img)
           annotator = Annotator(img, line_width=2)
