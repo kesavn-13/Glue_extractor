@@ -57,22 +57,27 @@ def preprocess(img):
 try:
     if image is not None:
        if st.button('Extract'):
-          img = preprocess(image)
+          im0 = cv2.imdecode(np.frombuffer(uploaded_file.read(), np.uint8), cv2.IMREAD_COLOR)
           model = YOLO(r"best.pt")
-          names = model.model.names
+          img = preprocess(im0)
+          
+          # Perform inference (prediction)
           results = model(img)
-          img_cv = np.array(img.convert('RGB'))
-          annotator = Annotator(img_cv, line_width=2)
-          for result in results:
-              clss = result.boxes.cls.cpu().tolist()
-              masks = result.masks.xy
+          names = model.model.names
+          annotator = Annotator(im0, line_width=2)
+          for result[0].masks is not None:
+              clss = result[0].boxes.cls.cpu().tolist()
+              masks = result[0].masks.xy
               for mask, cls in zip(masks, clss):
                   annotator.seg_bbox(mask=mask,mask_color=colors(int(cls), True),det_label=names[int(cls)])
+              rgb_image = cv2.cvtColor(annotator.im, cv2.COLOR_BGR2RGB)
+              st.image(rgb_image, caption="Instance Segmentation", use_column_width=True)
               #for j,mask in enumerate(result.masks.data):
               #    mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
               #    mask_image = Image.fromarray(mask)
-                  img.write(img_cv)
-                  st.image(img, width = 640, caption= "Extracted Image")
+            
+                  #img.write(img_cv)
+                  #st.image(img, width = 640, caption= "Extracted Image")
                   #cv2.imwrite("wout.png",mask)
 
 
