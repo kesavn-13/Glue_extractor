@@ -62,11 +62,13 @@ try:
           results = model(img)
           for result in results:
               b=results.probs.score
+              if hasattr(results, 'probs'):
+                  confidence_scores = results.probs
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
                   
-                  st.image(mask, width = 640, caption= b)
+                  st.image(mask, width = 640, caption= confidence_scores)
                   cv2.imwrite("wout.png",mask)
 
 
