@@ -71,7 +71,7 @@ try:
               #for j,mask in enumerate(result.masks.data):
               #    mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
               #    mask_image = Image.fromarray(mask)
-                  out.write(img)
+                  img.write(img_cv)
                   st.image(img, width = 640, caption= "Extracted Image")
                   #cv2.imwrite("wout.png",mask)
 
