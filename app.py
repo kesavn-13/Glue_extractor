@@ -61,6 +61,7 @@ try:
           model = YOLO(r"best.pt")
           results = model(img)
           b=model.predict(img)
+          annotator = Annotator(img, line_width=2)
           for result in results:
               clss = result.boxes.cls.cpu().tolist()
               masks = result.masks.xy
@@ -69,8 +70,8 @@ try:
               #for j,mask in enumerate(result.masks.data):
               #    mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
               #    mask_image = Image.fromarray(mask)
-                  out.write(im0)
-                  st.image(im0, width = 640, caption= "Extracted Image")
+                  out.write(img)
+                  st.image(img, width = 640, caption= "Extracted Image")
                   #cv2.imwrite("wout.png",mask)
 
 
