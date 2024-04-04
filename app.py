@@ -67,7 +67,7 @@ try:
               box=result.boxes
               classes=result.names
               max_prob_ind=np.argmax(probs)
-              max_prob=probs[max_prob_index]
+              max_prob=probs[max_prob_ind]
               class_label=classes[max_prob_ind]
               high_conf=f" Class: {class_label}, Prob: {max_prob:.4f}"
               for j,mask in enumerate(result.masks.data):
