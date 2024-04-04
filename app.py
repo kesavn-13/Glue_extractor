@@ -61,8 +61,8 @@ try:
           model = YOLO(r"best.pt")
           names = model.model.names
           results = model(img)
-          b=model.predict(img)
-          annotator = Annotator(img, line_width=2)
+          img_cv = np.array(img.convert('RGB'))
+          annotator = Annotator(img_cv, line_width=2)
           for result in results:
               clss = result.boxes.cls.cpu().tolist()
               masks = result.masks.xy
