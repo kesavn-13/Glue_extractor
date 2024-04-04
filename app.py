@@ -65,7 +65,7 @@ try:
           results = model(img)
           names = model.model.names
           annotator = Annotator(im0, line_width=2)
-          for results[0].masks is not None:
+          if results[0].masks is not None:
               clss = results[0].boxes.cls.cpu().tolist()
               masks = results[0].masks.xy
               for mask, cls in zip(masks, clss):
