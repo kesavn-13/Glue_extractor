@@ -61,20 +61,19 @@ try:
           model = YOLO(r"best.pt")
           results = model(img)
           hig=0
-          high_conf=None
+          high_conf=[]
           for result in results:
               probs=result.probs
               box=result.boxes
               classs=result.name
               max_prob_ind=np.argmax(probs)
               max_prob=probs[max_prob_index]
-              if max_prob > hig:
-                  hig=max_prob
-                  high_conf=f" Class: {classes[max_prob_ind]}, Probability: {hig:.4f}"
+              class_label=classes[max_prob_ind]
+              high_conf=f" Class: {class_label}, Prob: {max_prob:.4f}"
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
-                  st.image(mask, width = 640, caption=f"high_conf")
+                  st.image(mask, width = 640, caption=high_conf)
                   cv2.imwrite("wout.png",mask)
 
 
