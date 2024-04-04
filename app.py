@@ -74,7 +74,7 @@ try:
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
                   b=np.argmax(result.probs)
-                  max_prob=result.probs[b]
+                  class_label=result.classes[b]
                   st.image(mask, width = 640, caption=max_prob)
                   #st.write(high_conf)
                   cv2.imwrite("wout.png",mask)
