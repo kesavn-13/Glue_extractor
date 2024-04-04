@@ -74,7 +74,7 @@ try:
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
                   st.image(mask, width = 640, caption="Extracted Image")
-                  st.write(high_conf)
+                  #st.write(high_conf)
                   cv2.imwrite("wout.png",mask)
 
 
