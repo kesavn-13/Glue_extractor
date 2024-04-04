@@ -63,12 +63,15 @@ try:
           for result in results:
               b=result.probs
               box=result.boxes
+              classs=result.name
+              
               for i in range(len(box)):
                   probability=b[i]
+                  a=classs[i]
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
-                  st.image(mask, width = 640, caption = probability)
+                  st.image(mask, width = 640, caption= a)
                   cv2.imwrite("wout.png",mask)
 
 
