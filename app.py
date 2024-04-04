@@ -75,7 +75,7 @@ try:
                   mask_image = Image.fromarray(mask)
                   b=np.argmax(result.probs)
                   class_label=result.classes[b]
-                  st.image(mask, width = 640, caption=max_prob)
+                  st.image(mask, width = 640, caption=class_label)
                   #st.write(high_conf)
                   cv2.imwrite("wout.png",mask)
 
