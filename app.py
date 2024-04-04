@@ -64,7 +64,7 @@ try:
              for j,mask in enumerate(result.masks.data):
                  mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                  mask_image = Image.fromarray(mask)
-                 b=results.to_string(result.probs)
+                 b=result.probs.to_string()
                  st.image(mask, width = 640, caption =b)
                  cv2.imwrite("wout.png",mask)
 
