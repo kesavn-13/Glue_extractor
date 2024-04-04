@@ -14,7 +14,7 @@ from rembg import remove
 import cv2
 import numpy
 import OpenGL
-
+from ultralytics.utils.plotting import Annotator, colors
 
 # %%
 st.set_page_config(
