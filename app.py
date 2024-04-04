@@ -62,7 +62,7 @@ try:
           results = model(img)
           for result in results:
               b=results.probs.score
-              if hasattr(results, 'probs'):
+              if hasattr(result, 'probs'):
                   confidence_scores = results.probs
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
