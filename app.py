@@ -61,7 +61,7 @@ try:
           model = YOLO(r"best.pt")
           results = model(img)
           for result in results:
-              b=result.probs.top1
+              b=result.score
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
