@@ -62,15 +62,16 @@ try:
           results = model(img)
           b=model.predict(img)
           for result in results:
-              
-              if hasattr(result, 'probs'):
-                  confidence_scores = result.probs
-              for j,mask in enumerate(result.masks.data):
-                  mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
-                  mask_image = Image.fromarray(mask)
-                  
-                  st.image(mask, width = 640, caption= b)
-                  cv2.imwrite("wout.png",mask)
+              clss = result.boxes.cls.cpu().tolist()
+              masks = result.masks.xy
+              for mask, cls in zip(masks, clss):
+                  annotator.seg_bbox(mask=mask,mask_color=colors(int(cls), True),det_label=names[int(cls)])
+              #for j,mask in enumerate(result.masks.data):
+              #    mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
+              #    mask_image = Image.fromarray(mask)
+                  out.write(im0)
+                  st.image(im0, width = 640, caption= "Extracted Image")
+                  #cv2.imwrite("wout.png",mask)
 
 
 except Exception as e:
