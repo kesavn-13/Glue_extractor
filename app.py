@@ -63,20 +63,10 @@ try:
           hig=0
           high_conf=[]
           for result in results:
-              #probs=result.probs
-              #box=result.boxes
-              #classes=result.names
-              #max_prob_ind=np.argmax(probs)
-              #max_prob=probs[max_prob_ind]
-              #class_label=classes[max_prob_ind]
-              #high_conf=f" Class: {class_label}, Prob: {max_prob:.4f}"
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
-                  b=np.argmax(result.probs)
-                  class_label=result.classes[b]
-                  st.image(mask, width = 640, caption=class_label)
-                  #st.write(high_conf)
+                  st.image(mask, width = 640, caption= "Extracted Image")
                   cv2.imwrite("wout.png",mask)
 
 
