@@ -58,7 +58,7 @@ try:
     if image is not None:
        if st.button('Extract'):
           image = Image.open(file)
-          im0 = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+          im0 = cv2.cvtColor(np.array(image), cv2.COLOR_BGRA2BGR)
           model = YOLO(r"best.pt")
           img = preprocess(im0)
           
@@ -71,7 +71,7 @@ try:
               masks = results[0].masks.xy
               for mask, cls in zip(masks, clss):
                   annotator.seg_bbox(mask=mask,mask_color=colors(int(cls), True),det_label=names[int(cls)])
-              rgb_image = cv2.cvtColor(annotator.im, cv2.COLOR_BGRA2RGB)
+              rgb_image = cv2.cvtColor(annotator.im, cv2.COLOR_BGR2RGB)
               st.image(rgb_image, caption="Instance Segmentation", use_column_width=True)
               #for j,mask in enumerate(result.masks.data):
               #    mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
