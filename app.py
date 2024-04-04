@@ -65,7 +65,7 @@ try:
           for result in results:
               probs=result.probs
               box=result.boxes
-              classs=result.name
+              classs=result.names
               max_prob_ind=np.argmax(probs)
               max_prob=probs[max_prob_index]
               class_label=classes[max_prob_ind]
