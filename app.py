@@ -62,12 +62,11 @@ try:
           results = model(img)
           for result in results:
               b=result.names
-             for j,mask in enumerate(result.masks.data):
-                 mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
-                 mask_image = Image.fromarray(mask)
-                 
-                 st.image(mask, width = 640, caption = b)
-                 cv2.imwrite("wout.png",mask)
+              for j,mask in enumerate(result.masks.data):
+                  mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
+                  mask_image = Image.fromarray(mask)
+                  st.image(mask, width = 640, caption = b)
+                  cv2.imwrite("wout.png",mask)
 
 
 except Exception as e:
