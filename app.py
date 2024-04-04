@@ -71,10 +71,6 @@ try:
               if max_prob > hig:
                   hig=max_prob
                   high_conf=f" Class: {classes[max_prob_ind]}, Probability: {hig:.4f}"
-              
-              for i in range(len(box)):
-                  probability=b[i]
-                  a=classs[i]
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
@@ -82,6 +78,6 @@ try:
                   cv2.imwrite("wout.png",mask)
 
 
-except Exception as e:
-  st.info("Hello User!!")
-  pass
+#except Exception as e:
+#  st.info("Hello User!!")
+#  pass
