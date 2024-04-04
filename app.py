@@ -60,6 +60,7 @@ try:
           img = preprocess(image)
           model = YOLO(r"best.pt")
           results = model(img)
+          b=model.predict(img)
           for result in results:
               
               if hasattr(result, 'probs'):
@@ -68,7 +69,7 @@ try:
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
                   
-                  st.image(mask, width = 640, caption= result.det_label)
+                  st.image(mask, width = 640, caption= b)
                   cv2.imwrite("wout.png",mask)
 
 
