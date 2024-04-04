@@ -78,6 +78,6 @@ try:
                   cv2.imwrite("wout.png",mask)
 
 
-#except Exception as e:
-#  st.info("Hello User!!")
-#  pass
+except Exception as e:
+  st.info("Hello User!!")
+  pass
