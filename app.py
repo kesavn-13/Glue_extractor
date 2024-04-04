@@ -65,7 +65,7 @@ try:
                  mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                  mask_image = Image.fromarray(mask)
                  b=result.probs
-                 st.image(mask, width = 640, caption = result.probs[0][0])
+                 st.image(mask, width = 640, caption = result.probs[0])
                  cv2.imwrite("wout.png",mask)
 
 
