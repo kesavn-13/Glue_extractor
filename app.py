@@ -71,5 +71,5 @@ try:
 
 
 except Exception as e:
-  st.info("Hello User!!")
+  st.info(f"Error accessing confidence score: {e}")
   pass
