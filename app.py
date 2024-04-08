@@ -57,11 +57,8 @@ def preprocess(img):
 try:
     if image is not None:
        if st.button('Extract'):
-          image = Image.open(file)
-          im0 = cv2.cvtColor(np.array(image), cv2.COLOR_BGRA2BGR)
           model = YOLO(r"best.pt")
-          img = preprocess(im0)
-          
+          img = preprocess(image)
           # Perform inference (prediction)
           results = model(img)
           for result in results:
