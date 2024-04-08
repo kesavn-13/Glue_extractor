@@ -58,21 +58,24 @@ try:
     if image is not None:
        if st.button('Extract'):
           model = YOLO(r"best.pt")
-          #img = preprocess(image)
+          img = preprocess(image)
           # Perform inference (prediction)
-          results = model(image)
+          results = model(img)
           for i,result in enumerate(results):
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
-
-                  class_probs = result.probs[j]
-                  predicted_class = result.names[np.argmax(class_probs)]  # Get class name of highest probability
-                  confidence = result.scores
-                  captions = f"Predicted Class: {predicted_class} (Confidence: {confidence:.2f})"
-
-                  
-                  st.image(mask, width = 640, caption= confidence)
+                  if result.probs is None:
+                      predicted_class = "Probabilities Not Available"
+                  else:
+                      class_probs = result.probs[j]
+                      predicted_class = result.names[np.argmax(class_probs)]
+                  if result.scores is None:
+                      confidence = "N/A"
+                  else:
+                      confidence=result.scores
+                  captions = f"Extracted Image {i+1} - Mask {j+1}\nPredicted Class: {predicted_class} (Confidence: {confidence})"
+                  st.image(mask, width = 640, caption= captions)
                   cv2.imwrite("wout.png",mask)
 
 
