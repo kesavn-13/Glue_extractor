@@ -65,12 +65,17 @@ try:
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
-                  box=result.boxes
-                  predicted_class=box.cls
-                  confidence=box.conf
-                  class_id = result.names[predicted_class.item()]
+                  for box in result.boxes:
+                      class_id = result.names[box.cls[0].item()]
+                      cords = box.xyxy[0].tolist()
+                      cords = [round(x) for x in cords]
+                      conf = round(box.conf[0].item(), 2)
+                      
+                      
+                      
+                  
                 
-                  captions = f"Extracted Image {i+1} - Mask {j+1}\nPredicted Class: {class_id} (Confidence: {confidence})"
+                  captions = f"Extracted Image {i+1} - Mask {j+1}\nPredicted Class: {class_id} (Confidence: {conf})"
                   st.image(mask, width = 640, caption= captions)
                   cv2.imwrite("wout.png",mask)
 
