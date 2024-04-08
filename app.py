@@ -61,11 +61,11 @@ try:
           img = preprocess(image)
           # Perform inference (prediction)
           results = model(img)
-          for result in results:
+          for i,result in enumerate(results):
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
-                  st.image(mask, width = 640, caption= "Extracted Image")
+                  st.image(mask, width = 640, caption= f"Extracted Image {i+1} - Mask {j+1}")
                   cv2.imwrite("wout.png",mask)
 
 
