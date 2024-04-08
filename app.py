@@ -68,11 +68,11 @@ try:
 
                   class_probs = result.probs[j]
                   predicted_class = result.names[np.argmax(class_probs)]  # Get class name of highest probability
-                  confidence = class_probs.max()
+                  confidence = result.scores
                   captions = f"Predicted Class: {predicted_class} (Confidence: {confidence:.2f})"
 
                   
-                  st.image(mask, width = 640, caption= captions)
+                  st.image(mask, width = 640, caption= confidence)
                   cv2.imwrite("wout.png",mask)
 
 
