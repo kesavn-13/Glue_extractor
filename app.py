@@ -58,7 +58,7 @@ try:
     if image is not None:
        if st.button('Extract'):
           model = YOLO(r"best.pt")
-          img = preprocess(image)
+          #img = preprocess(image)
           # Perform inference (prediction)
           results = model(img)
           for i,result in enumerate(results):
