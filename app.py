@@ -60,7 +60,7 @@ try:
           model = YOLO(r"best.pt")
           #img = preprocess(image)
           # Perform inference (prediction)
-          results = model(img)
+          results = model(image)
           for i,result in enumerate(results):
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
