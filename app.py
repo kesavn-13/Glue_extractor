@@ -65,7 +65,13 @@ try:
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
-                  st.image(mask, width = 640, caption= f"Extracted Image {i+1} - Mask {j+1}")
+
+                  predicted_class = result.names[result.labels[j]]  # Assuming names holds class names
+                  confidence = result.scores[j]
+                  captions = f"Predicted Class: {predicted_class} (Confidence: {confidence:.2f})"
+
+                  
+                  st.image(mask, width = 640, caption= captions)
                   cv2.imwrite("wout.png",mask)
 
 
