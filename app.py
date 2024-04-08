@@ -66,7 +66,8 @@ try:
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
 
-                  predicted_class = result.names[result.labels[j]]  # Assuming names holds class names
+                  class_probs = result.class_probs
+                  predicted_class = result.names[np.argmax(class_probs)]  # Get class name of highest probability
                   confidence = result.scores[j]
                   captions = f"Predicted Class: {predicted_class} (Confidence: {confidence:.2f})"
 
