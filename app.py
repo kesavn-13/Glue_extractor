@@ -65,15 +65,10 @@ try:
               for j,mask in enumerate(result.masks.data):
                   mask = (mask.numpy() * 255).astype(np.uint8)  # Convert to uint8
                   mask_image = Image.fromarray(mask)
-                  if result.probs is None:
-                      predicted_class = "Probabilities Not Available"
-                  else:
-                      class_probs = result.probs[j]
-                      predicted_class = result.names[np.argmax(class_probs)]
-                  if result.scores is None:
-                      confidence = "N/A"
-                  else:
-                      confidence=result.scores
+                  box=result.boxes[0]
+                  predicted_class=box.cls
+                  confidence=box.conf
+                
                   captions = f"Extracted Image {i+1} - Mask {j+1}\nPredicted Class: {predicted_class} (Confidence: {confidence})"
                   st.image(mask, width = 640, caption= captions)
                   cv2.imwrite("wout.png",mask)
