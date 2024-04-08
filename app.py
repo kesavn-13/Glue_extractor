@@ -68,8 +68,9 @@ try:
                   box=result.boxes
                   predicted_class=box.cls
                   confidence=box.conf
+                  class_id = result.names[predicted_class.item()]
                 
-                  captions = f"Extracted Image {i+1} - Mask {j+1}\nPredicted Class: {predicted_class} (Confidence: {confidence})"
+                  captions = f"Extracted Image {i+1} - Mask {j+1}\nPredicted Class: {class_id} (Confidence: {confidence})"
                   st.image(mask, width = 640, caption= captions)
                   cv2.imwrite("wout.png",mask)
 
